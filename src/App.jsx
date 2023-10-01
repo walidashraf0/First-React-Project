@@ -12,23 +12,29 @@ import Login from './component/Login/Login'
 import Register from './component/Register/Register'
 import Notfound from './component/Notfound/Notfound'
 import { CounterContextProvider } from './Context/CounterContext'
+import UserTokenProvider from './Context/UserToken'
 
 export default function App() {
 
-  let routers = createBrowserRouter ([
-    { path:'/' ,element: <Layout/> , children: [
-      {index:true , element:<Home/>},
-      {path:'cart' , element:<Cart/>},
-      {path:'Brands' , element:<Brands/>},
-      {path:'categories' , element:<Categories/>},
-      {path:'Products' , element:<Products/>},
-      {path:'Login' , element:<Login/>},
-      {path:'Register' , element:<Register/>},
-      {path:'Notfound' , element:<Notfound/>},
-    ]}
+  let routers = createBrowserRouter([
+    {
+      path: '/', element: <Layout />, children: [
+        { index: true, element: <Home /> },
+        { path: 'cart', element: <Cart /> },
+        { path: 'Brands', element: <Brands /> },
+        { path: 'categories', element: <Categories /> },
+        { path: 'Products', element: <Products /> },
+        { path: 'Login', element: <Login /> },
+        { path: 'Register', element: <Register /> },
+        { path: 'Notfound', element: <Notfound /> },
+      ]
+    }
   ])
-return <><CounterContextProvider>
-    <RouterProvider router={routers}></RouterProvider>
-  </CounterContextProvider>
+  return <>
+    <UserTokenProvider>
+      <CounterContextProvider>
+        <RouterProvider router={routers}></RouterProvider>
+      </CounterContextProvider>
+    </UserTokenProvider>
   </>
 }
