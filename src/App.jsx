@@ -13,17 +13,19 @@ import Register from './component/Register/Register'
 import Notfound from './component/Notfound/Notfound'
 import { CounterContextProvider } from './Context/CounterContext'
 import UserTokenProvider from './Context/UserToken'
+import ProtectedRoute from './component/ProtectedRoute/ProtectedRoute'
+
 
 export default function App() {
 
   let routers = createBrowserRouter([
     {
       path: '/', element: <Layout />, children: [
-        { index: true, element: <Home /> },
-        { path: 'cart', element: <Cart /> },
-        { path: 'Brands', element: <Brands /> },
-        { path: 'categories', element: <Categories /> },
-        { path: 'Products', element: <Products /> },
+        { index: true, element: <ProtectedRoute><Home /></ProtectedRoute> },
+        { path: 'cart', element: <ProtectedRoute><Cart /></ProtectedRoute> },
+        { path: 'Brands', element: <ProtectedRoute><Brands /></ProtectedRoute> },
+        { path: 'categories', element: <ProtectedRoute><Categories /></ProtectedRoute> },
+        { path: 'Products', element: <ProtectedRoute><Products /></ProtectedRoute> },
         { path: 'Login', element: <Login /> },
         { path: 'Register', element: <Register /> },
         { path: 'Notfound', element: <Notfound /> },

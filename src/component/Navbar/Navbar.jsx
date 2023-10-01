@@ -1,14 +1,21 @@
 import React, { useContext } from 'react'
 import style from './Navbar.module.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { CounterContext } from '../../Context/CounterContext'
 import { UserToken } from '../../Context/UserToken'
 
 export default function Navbar() {
+  let navigate = useNavigate()
 
   let {count} =useContext(CounterContext)
 
-  let {userToken} =useContext(UserToken)
+  let {userToken , setUserToken} =useContext(UserToken)
+
+  function logout() {
+    localStorage.removeItem('userToken');
+    setUserToken(null);
+    navigate('login');
+  }
 
   return <>
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -53,7 +60,7 @@ export default function Navbar() {
               <i className='fab fa-tiktok mx-1'></i>
             </li>
             {userToken? <li className="nav-item">
-              <span className="nav-link">Logout</span>
+              <span onClick={()=>logout()} className="nav-link cursor-pointer">Logout</span>
             </li>: <><li className="nav-item">
               <Link className="nav-link" to={'login'}>Login</Link>
             </li>
