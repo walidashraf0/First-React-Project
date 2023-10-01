@@ -11,6 +11,7 @@ import Products from './component/Products/Products'
 import Login from './component/Login/Login'
 import Register from './component/Register/Register'
 import Notfound from './component/Notfound/Notfound'
+import { CounterContextProvider } from './Context/CounterContext'
 
 export default function App() {
 
@@ -26,7 +27,8 @@ export default function App() {
       {path:'Notfound' , element:<Notfound/>},
     ]}
   ])
-  return <>
-  <RouterProvider router={routers}></RouterProvider>
+return <><CounterContextProvider>
+    <RouterProvider router={routers}></RouterProvider>
+  </CounterContextProvider>
   </>
 }
