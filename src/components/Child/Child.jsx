@@ -12,7 +12,7 @@ export default class Child extends Component {
                 <h4>Category: {category}</h4>
                 <h4>Price: {price}</h4>
                 <h4>Count: {count}</h4>
-                {isSale? <div className='bg-danger text-white p-1 position-absolute top-0 end-0'>Sale</div>:''}
+                {isSale === true? <div className='bg-danger text-white p-1 position-absolute top-0 end-0'>Sale</div>:''}
                 <button  onClick={()=>this.props.delete(id)} className='btn btn-danger w-100 btn-sm'>Delete</button>
                 <button  onClick={()=>this.props.update(this.props.i, 1)} className='btn btn-info my-2 w-100 btn-sm'>+</button>
                 <button  onClick={()=>this.props.update(this.props.i, -1)} className='btn btn-outline-info w-100 btn-sm'>-</button>

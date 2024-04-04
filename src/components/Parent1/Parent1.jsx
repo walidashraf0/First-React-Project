@@ -66,9 +66,9 @@ export default class Parent1 extends Component {
     // Deep Copy
     let myProducts = [...this.state.products];
     // Delete
-    myProducts = myProducts.filter((product)=> product.id !== deleteId);
+    myProducts = myProducts.filter((product) => product.id !== deleteId);
     // setState
-    this.setState({ products :myProducts});
+    this.setState({ products: myProducts });
   }
 
   updateProduct = (index, step) => {
@@ -76,16 +76,16 @@ export default class Parent1 extends Component {
     // Deep Copy
     let myProducts = [...this.state.products];
     // Update
-    myProducts[index].count+= step;
+    myProducts[index].count += step;
     // setState
-    this.setState({ products :myProducts});
+    this.setState({ products: myProducts });
   }
 
   render() {
     return <>
       <div className="container">
         <div className="row bg-dark p-2 gy-3">
-          {this.state.products.map((product , index) => <Child key={index} i= {index} productDetails={product} delete={this.deleteProduct} update={this.updateProduct}/>)}
+          {this.state.products.map((product, index) => <Child key={index} i={index} productDetails={product} delete={this.deleteProduct} update={this.updateProduct} />)}
         </div>
       </div>
     </>
