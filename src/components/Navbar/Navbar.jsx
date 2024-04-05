@@ -24,6 +24,9 @@ export default function Navbar() {
                             <Link className="nav-link" to={'about'}>About</Link>
                         </li>
                         <li className="nav-item">
+                            <Link className="nav-link" to={'gallery'}>Gallery</Link>
+                        </li>
+                        <li className="nav-item">
                             <Link className="nav-link" to={'contact'}>Contacts</Link>
                         </li>
                     </ul>

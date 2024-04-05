@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import Style from './Home.module.css'
 
 export default function Home() {
 
@@ -17,27 +18,28 @@ export default function Home() {
   }, []);
 
   return <>
-  {loading === true ? (
-        <div className='position-fixed bg-dark text-white vh-100 w-100 d-flex justify-content-center align-items-center'>
-          <i className='fas fa-spinner fa-spin fa-5x'></i>
-        </div>
-      ) : (
-        <div>
-          <h1 className="text-center bg-info mb-5">
-            <i className="fas fa-home"></i>
-            Home Component
-          </h1>
-          <div className="container">
-            <div className="row">
-              {trendingMovies.map((movie) => (
-                <div key={movie.id} className='col-md-3'>
-                  <img className='w-100' src={"https://image.tmdb.org/t/p/w500/" + movie.poster_path} alt="" />
-                  <h2 className='h5'>{movie.title}</h2>
-                </div>
-              ))}
-            </div>
+    <h1 className="text-center bg-info mb-5">
+      <i className="fas fa-home"></i>
+      Home Component
+    </h1>
+    <h2 style={{ backgroundColor: 'teal', textAlign: 'center' }}>Movies</h2>
+    {loading === true ? (
+      <div className='position-fixed bg-dark text-white vh-100 w-100 d-flex justify-content-center align-items-center'>
+        <i className='fas fa-spinner fa-spin fa-5x'></i>
+      </div>
+    ) : (
+      <div>
+        <div className="container">
+          <div className="row">
+            {trendingMovies.map((movie) => (
+              <div key={movie.id} className='col-md-3'>
+                <img className='w-100' src={"https://image.tmdb.org/t/p/w500/" + movie.poster_path} alt="" />
+                <h2 className={`${Style.test} h5`}>{movie.title}</h2>
+              </div>
+            ))}
           </div>
         </div>
-      )}
+      </div>
+    )}
   </>
 }
