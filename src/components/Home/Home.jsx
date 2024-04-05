@@ -1,26 +1,43 @@
-import { Component } from "react";
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 
-class Home extends Component {
-  state = {
-    productName: 'samsung',
-  }
-  welcome() {
-    return 'welcome back!'
-  }
+export default function Home() {
 
-  // Binding
-  render() {
-    return <>
-      <h1 className="text-center bg-info mb-5">
-        <i className="fas fa-home"></i>
-        Home Component</h1>
+  const [trendingMovies, settrendingMovies] = useState([]);
+  const [loading, setloading] = useState(true);
 
-      {/* <h2>Product Name: {this.state.productName}</h2> */}
-      {/* <h2>{this.welcome()}</h2> */}
-    </>
-
+  async function getTrending() {
+    let { data } = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=a1741ea6afc5c3f3e0ec4981ac49a894`);
+    settrendingMovies(data.results);
+    setloading(false);
   }
 
+  useEffect(() => {
+    getTrending();
+  }, []);
+
+  return <>
+  {loading === true ? (
+        <div className='position-fixed bg-dark text-white vh-100 w-100 d-flex justify-content-center align-items-center'>
+          <i className='fas fa-spinner fa-spin fa-5x'></i>
+        </div>
+      ) : (
+        <div>
+          <h1 className="text-center bg-info mb-5">
+            <i className="fas fa-home"></i>
+            Home Component
+          </h1>
+          <div className="container">
+            <div className="row">
+              {trendingMovies.map((movie) => (
+                <div key={movie.id} className='col-md-3'>
+                  <img className='w-100' src={"https://image.tmdb.org/t/p/w500/" + movie.poster_path} alt="" />
+                  <h2 className='h5'>{movie.title}</h2>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+  </>
 }
-
-export default Home;
